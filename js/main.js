@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
   for (var i = 0; i < links.length; i++) {
     var link = links[i];
     var li = document.createElement("li");
-    li.textContent = link.label;
     li.appendChild(document.createTextNode(link));
     ol.appendChild(li);
   }
