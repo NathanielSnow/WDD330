@@ -1,9 +1,4 @@
-const links = [
-  {
-    label: "Week1 notes",
-    url: "seethesound.org",
-  },
-];
+let links = ["Nate", "John"];
 
 var ol = document.getElementById("exercise_list");
 
