@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var link = links[i];
     var li = document.createElement("li");
     li.textContent = link.label;
-    alert(li.value);
+    alert(li.url);
     li.setAttribute("href", li.url);
     li.appendChild(document.createTextNode(link));
     ol.appendChild(li);
