@@ -9,10 +9,9 @@ const links = [
   },
 ];
 
-var ol = document.getElementById("exercise_list");
-
 document.addEventListener("DOMContentLoaded", function () {
   alert(links.length);
+  var ol = document.getElementById("exercise_list");
   // this function runs when the DOM is ready, i.e. when the document has been parsed
   for (var i = 0; i < links.length; i++) {
     var link = links[i];
