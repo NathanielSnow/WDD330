@@ -12,15 +12,13 @@ const links = [
 document.addEventListener("DOMContentLoaded", function () {
   var ol = document.getElementById("exercise_list");
 
-  // this function runs when the DOM is ready, i.e. when the document has been parsed
   for (var i = 0; i < links.length; i++) {
     var link = links[i];
     var a = document.createElement("a");
     var li = document.createElement("li");
     a.textContent = link.label;
-    a.setAttribute("href", "http://www.msn.com");
+    a.setAttribute("href", link.url);
     li.appendChild(a);
-    //li.appendChild(document.createTextNode(link));
     ol.appendChild(li);
   }
 });
