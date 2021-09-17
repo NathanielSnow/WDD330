@@ -1,4 +1,9 @@
-let links = ["Nate", "John"];
+const links = [
+  {
+    label: "Week1 notes",
+    url: "week1/index.html",
+  },
+];
 
 var ol = document.getElementById("exercise_list");
 
