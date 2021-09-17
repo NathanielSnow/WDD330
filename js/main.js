@@ -1,7 +1,7 @@
 const links = [
   {
     label: "Week1 notes",
-    url: "https://www.seethesound.org",
+    url: "/index.html",
   },
   {
     label: "Week2 notes",
