@@ -1,11 +1,11 @@
 const links = [
   {
     label: "Week1 notes",
-    url: "seethesound.org",
+    url: "https://www.seethesound.org",
   },
   {
     label: "Week2 notes",
-    url: "youtube.com",
+    url: "https://www.youtube.com/",
   },
 ];
 
