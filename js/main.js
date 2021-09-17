@@ -1,11 +1,11 @@
-//var link = document.createElement("li");
+let links = ["face"];
 
-const links = [
+/*const links = [
   {
     label: "Week1 notes",
     url: "seethesound.org",
   },
-];
+];*/
 
 var ol = document.getElementById("exercise_list");
 
