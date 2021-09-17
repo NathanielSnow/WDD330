@@ -15,9 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // this function runs when the DOM is ready, i.e. when the document has been parsed
   for (var i = 0; i < links.length; i++) {
     var link = links[i];
-    alert(link.label);
     var li = document.createElement("li");
     li.textContent = link.label;
+    alert(li.value);
     li.setAttribute("href", li.url);
     li.appendChild(document.createTextNode(link));
     ol.appendChild(li);
