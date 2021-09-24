@@ -1,6 +1,4 @@
 //numbers to be added, multipied, and subtracted
-let number1 = document.querySelector("#number1").value;
-let number2 = document.querySelector("#number2").value;
 
 //Grabs input value and displays it in a div
 function exercise1() {
@@ -25,12 +23,16 @@ function exercise3() {
 
 //multiplies two numbers and displays the product in a div
 const multiply = () => {
+  let number1 = document.querySelector("#number1").value;
+  let number2 = document.querySelector("#number2").value;
   let result = parseFloat(number1) * parseFloat(number2);
   showText(result, "txtOutput3");
 };
 
 //subtracts two numbers and displays the difference in a div
 const substract = function () {
+  let number1 = document.querySelector("#number1").value;
+  let number2 = document.querySelector("#number2").value;
   let result = parseFloat(number1) - parseFloat(number2);
   showText(result, "txtOutput3");
 };
