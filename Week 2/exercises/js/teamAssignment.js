@@ -35,7 +35,7 @@ function showText(what, where) {
 function sumNumberUntil(number) {
   let total = 0;
   for (i = 1; i <= number; i++) {
-    total = total + i;
+    total += i;
   }
   return total;
 }
