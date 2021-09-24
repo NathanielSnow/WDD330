@@ -21,16 +21,6 @@ function exercise3() {
   showText(result, "txtOutput3");
 }
 
-//divides two numbers and displays the quotient in a div; checks to see if the second number is a zero
-function divide() {
-  let result = parseFloat(number1) / parseFloat(number2);
-  if (number2 === 0) {
-    alert("You can't divide by zero!");
-  } else {
-    showText(result, "txtOutput3");
-  }
-}
-
 //multiplies two numbers and displays the product in a div
 const multiply = () => {
   let result = parseFloat(number1) * parseFloat(number2);
