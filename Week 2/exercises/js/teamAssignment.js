@@ -17,6 +17,8 @@ function exercise2() {
 
 //adds two numbers and displays the sum in a div
 function exercise3() {
+  let number1 = document.querySelector("#number1").value;
+  let number2 = document.querySelector("#number2").value;
   let result = parseFloat(number1) + parseFloat(number2);
   showText(result, "txtOutput3");
 }
