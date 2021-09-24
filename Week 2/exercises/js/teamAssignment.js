@@ -1,3 +1,6 @@
+let number1 = document.querySelector("#number1").value;
+let number2 = document.querySelector("#number2").value;
+
 function exercise1() {
   const txtValue = document.querySelector("#txt1").value;
   showText(txtValue, "txtOutput");
@@ -9,22 +12,16 @@ function exercise2() {
   showText(result, "txtOutput2");
 }
 function exercise3() {
-  let number1 = document.querySelector("#number1").value;
-  let number2 = document.querySelector("#number2").value;
   let result = parseFloat(number1) + parseFloat(number2);
   showText(result, "txtOutput3");
 }
 
 const multiply = () => {
-  let number1 = document.querySelector("#number1").value;
-  let number2 = document.querySelector("#number2").value;
   let result = parseFloat(number1) * parseFloat(number2);
   showText(result, "txtOutput3");
 };
 
 const substract = function () {
-  let number1 = document.querySelector("#number1").value;
-  let number2 = document.querySelector("#number2").value;
   let result = parseFloat(number1) - parseFloat(number2);
   showText(result, "txtOutput3");
 };
