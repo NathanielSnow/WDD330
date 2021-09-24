@@ -23,10 +23,10 @@ function exercise3() {
 
 //divides two numbers and displays the quotient in a div; checks to see if the second number is a zero
 function divide() {
+  let result = parseFloat(number1) / parseFloat(number2);
   if (number2 === 0) {
     alert("You can't divide by zero!");
   } else {
-    let result = parseFloat(number1) / parseFloat(number2);
     showText(result, "txtOutput3");
   }
 }
