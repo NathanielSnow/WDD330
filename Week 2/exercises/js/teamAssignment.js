@@ -1,5 +1,3 @@
-//numbers to be added, multipied, and subtracted
-
 //Grabs input value and displays it in a div
 function exercise1() {
   const txtValue = document.querySelector("#txt1").value;
