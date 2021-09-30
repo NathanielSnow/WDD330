@@ -1,3 +1,9 @@
+const quiz = [
+  { name: "Superman", realName: "Clark Kent" },
+  { name: "Wonderwoman", realName: "Dianna Prince" },
+  { name: "Batman", realName: "Bruce Wayne" },
+];
+
 // View Object
 const view = {
   score: document.querySelector("#score strong"),
@@ -19,10 +25,12 @@ const view = {
   },
 };
 
+// Game Object
 const game = {
   start(quiz) {
-    this.questions = [...quiz];
     this.score = 0;
+    this.questions = [...quiz];
+    view.hide(view.start);
     // main game loop
     for (const question of this.questions) {
       this.question = question;
@@ -30,7 +38,6 @@ const game = {
     }
     // end of main game loop
     this.gameOver();
-    view.hide(view.start);
   },
   ask() {
     const question = `What is ${this.question.name}'s real name?`;
@@ -60,5 +67,5 @@ const game = {
     view.show(view.start);
   },
 };
-game.start(quiz);
+
 view.start.addEventListener("click", () => game.start(quiz), false);
