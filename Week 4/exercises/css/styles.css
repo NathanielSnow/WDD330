@@ -1,0 +1,23 @@
+table,
+th,
+td {
+  border: 2px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+td {
+  height: 100px;
+  width: 100px;
+  text-align: center;
+}
+
+button {
+  margin-left: 56em;
+  margin-top: 2em;
+  width: 90px;
+}
