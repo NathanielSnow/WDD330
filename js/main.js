@@ -15,6 +15,10 @@ const links = [
     label: "Week-04 Notes",
     url: "Week 4/index.html",
   },
+  {
+    label: "Week-05 Notes",
+    url: "Week 5/index.html",
+  },
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
