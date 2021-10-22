@@ -1,0 +1,26 @@
+/*General Styles*/
+table {
+  border: 2px solid black;
+}
+
+/*id styles*/
+#todo_list {
+  /*border: 2px solid black;*/
+  text-align: center;
+}
+
+#todo_list table {
+  margin: auto;
+  width: 25em;
+}
+
+#taskInput {
+  width: 25em;
+  height: 2em;
+  margin-top: 5em;
+}
+
+#submitTaskBtn {
+  width: 4em;
+  height: 2.5em;
+}
