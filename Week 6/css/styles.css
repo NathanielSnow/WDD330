@@ -1,11 +1,12 @@
 /*General Styles*/
-/*table,
-td {
-  border: 2px solid black;
-}*/
+
+body {
+  text-align: center;
+}
 
 table {
   width: 50em;
+  margin: auto;
 }
 table,
 th,
@@ -19,6 +20,10 @@ td {
 table button {
   background-color: transparent;
   border: none;
+}
+
+table button:hover {
+  border: 1px solid black;
 }
 
 /*id styles*/
