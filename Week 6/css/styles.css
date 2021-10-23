@@ -1,6 +1,19 @@
 /*General Styles*/
-table {
+/*table,
+td {
   border: 2px solid black;
+}*/
+
+table {
+  width: 50em;
+}
+table,
+th,
+td {
+  border: solid 2px black;
+  border-collapse: collapse;
+
+  text-align: center;
 }
 
 /*id styles*/
@@ -23,4 +36,8 @@ table {
 #submitTaskBtn {
   width: 4em;
   height: 2.5em;
+}
+
+.completedTask {
+  text-decoration: line-through;
 }
