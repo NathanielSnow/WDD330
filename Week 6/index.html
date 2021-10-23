@@ -8,26 +8,17 @@
     <title>TODO List</title>
   </head>
   <body>
-    <div id="todo_list">
-      <h1>Todos</h1>
-      <table>
-        <tr>
-          <td>
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-          </td>
-          <td>Todo description</td>
-          <td>X</td>
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-          </td>
-          <td>Todo description</td>
-          <td>X</td>
-        </tr>
-      </table>
-      <input type="text" id="taskInput" />
-      <button type="button" id="submitTaskBtn">+</button>
-    </div>
+    
+    <h1>Todos</h1>
+    
+    <!--this is where the list is added-->
+    <div id="listDiv"></div>
+    <table id="taskList">
+
+    </table>
+    
+    <input type="text" id="taskInput" />
+    <button type="button" id="submitTaskBtn" onclick="addTask()">&#43</button>
   </body>
+  <script src="js/main.js"></script>
 </html>
