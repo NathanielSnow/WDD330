@@ -5,7 +5,7 @@ body {
 }
 
 table {
-  width: 50em;
+  width: 500px;
   margin: auto;
 }
 table,
@@ -17,13 +17,47 @@ td {
   text-align: center;
 }
 
+tr td:nth-child(1) {
+  border-right: none;
+  text-align: left;
+  padding-left: 1em;
+}
+
+tr td:nth-child(2) {
+  border-left: none;
+  border-right: none;
+  text-align: left;
+  padding-left: 1em;
+}
+
+tr td:nth-child(3) {
+  border-left: none;
+  text-align: right;
+  padding-right: 1em;
+}
+
+tr:last-child td {
+  text-align: center;
+}
+
+tr:last-child td button {
+  font-size: large;
+  margin-left: 1em;
+}
+
 table button {
   background-color: transparent;
   border: none;
+  font-size: x-large;
 }
 
 table button:hover {
   border: 1px solid black;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
 }
 
 /*id styles*/
@@ -50,4 +84,5 @@ table button:hover {
 
 .completedTask {
   text-decoration: line-through;
+  font-weight: bolder;
 }
