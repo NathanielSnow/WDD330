@@ -1,14 +1,5 @@
 const toDoList = [];
 
-/*function createList() {
-  let taskList = document.createElement("table");
-  taskList.setAttribute("id", "taskList");
-
-  
-  let listDiv = document.getElementById("listDiv");
-  listDiv.appendChild(taskList);
-}*/
-
 function addTask() {
   let taskInput = document.getElementById("taskInput").value;
   const todo = { id: +new Date(), content: taskInput, completed: false };
@@ -30,21 +21,32 @@ function displayList() {
     let cell1 = row.insertCell(0);
     cell1.innerHTML = '<input type="checkbox" onclick="updateTask()">';
 
-    /*let element1 = document.createElement("input");
-    element1.type = "checkbox";
-    element1.name = "chkStatus";
-    cell1.appendChild(element1);*/
-
     let cell2 = row.insertCell(1);
-    cell2.innerHTML = toDoList[x].content;
+    cell2.innerHTML = "<p>" + toDoList[x].content + "</p>";
 
     let cell3 = row.insertCell(2);
-    cell3.innerHTML = '<button onclick="deleteTask()">&#x2715</button>';
+    cell3.innerHTML = '<button onclick="deleteTask(this)">&#x2715</button>';
+  }
+  statusBar();
+}
+
+function statusBar() {
+  let tasks = document.getElementById("taskList");
+
+  let row2 = tasks.insertRow();
+  let endCell = row2.insertCell();
+  endCell.setAttribute("colspan", 3);
+  endCell.innerHTML =
+    '<p>0 Tasks left</p><button onclick="showAll()">All</button><button onclick="#">Active</button><button onclick="#">Completed</button>';
+
+  if (toDoList.length === 0) {
+    tasks.deleteRow(0);
   }
 }
 
-function greeting() {
-  alert("hello nate!!");
+function showAll() {
+  tasks.innerHTML = "";
+  displayList();
 }
 
 function updateTask() {
@@ -65,7 +67,10 @@ function updateTask() {
   }
 }
 
-function deleteTask() {
+function deleteTask(deleteBtn) {
   let tasks = document.getElementById("taskList");
-  let rowCount = tasks.rows.length;
+  let taskID = deleteBtn.parentNode.parentNode.rowIndex;
+  toDoList.splice(taskID, 1);
+  tasks.innerHTML = "";
+  displayList();
 }
