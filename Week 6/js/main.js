@@ -23,7 +23,7 @@ function displayList() {
 
     if (toDoList[x].completed) {
       cell1.innerHTML =
-        '<input type="checkbox" onclick="updateTask()" checked>';
+        '<input type="checkbox" class="chkBox" onclick="updateTask()" checked>';
       cell2.innerHTML =
         '<p class="completedTask">' + toDoList[x].content + "</p>";
     } else {
@@ -92,9 +92,8 @@ function statusBar() {
   let endCell = row2.insertCell();
   endCell.setAttribute("colspan", 3);
   endCell.innerHTML =
-    "<p>" +
     tasksLeft() +
-    ' Tasks left</p><button onclick="showAll()">All</button><button onclick="showActive()">Active</button><button onclick="showComplete()">Completed</button>';
+    ' Tasks left <button onclick="showAll()">All</button><button onclick="showActive()">Active</button><button onclick="showComplete()">Completed</button>';
 
   if (toDoList.length === 0) {
     tasks.deleteRow(0);
@@ -110,7 +109,7 @@ function showAll() {
 function tasksLeft() {
   let activeTasks = 0;
   for (let x = 0; x < toDoList.length; x++) {
-    if (toDoList[x].completed) {
+    if (!toDoList[x].completed) {
       activeTasks++;
     }
   }
