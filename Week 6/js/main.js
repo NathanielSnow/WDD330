@@ -1,3 +1,4 @@
+/*Adds a 'todo' task to localstroage, makes space if none exists*/
 function addTask() {
   let taskInput = document.getElementById("taskInput").value;
   let toDoList = [];
@@ -17,6 +18,7 @@ function addTask() {
   displayList();
 }
 
+/*Display's list of todos*/
 function displayList() {
   let toDoItems = JSON.parse(localStorage.getItem("toDo"));
 
@@ -47,6 +49,7 @@ function displayList() {
   selectBtn(btnAll.id);
 }
 
+/*Finds the current display button and puts a border around it*/
 function selectBtn(btn) {
   let btnAll = document.getElementById("showAll");
   let btnActive = document.getElementById("showActive");
@@ -76,6 +79,7 @@ function selectBtn(btn) {
   }
 }
 
+/*Displays active tasks; activated by the "Active" button*/
 function showActive() {
   let toDoItems = JSON.parse(localStorage.getItem("toDo"));
 
@@ -103,6 +107,7 @@ function showActive() {
   selectBtn(btnActive.id);
 }
 
+/*Displays complete tasks; activated by the "Complete" button*/
 function showComplete() {
   let toDoItems = JSON.parse(localStorage.getItem("toDo"));
   let tasks = document.getElementById("taskList");
@@ -132,6 +137,7 @@ function showComplete() {
   selectBtn(btnComplete.id);
 }
 
+/*Puts a 'staus' bar at the end of the task list that diplays the # of tasks lift and the display buttons*/
 function statusBar() {
   let toDoItems = JSON.parse(localStorage.getItem("toDo"));
 
@@ -150,6 +156,7 @@ function statusBar() {
   }
 }
 
+/*Displays all tasks; activated by the "All" button*/
 function showAll() {
   let tasks = document.getElementById("taskList");
 
@@ -157,6 +164,7 @@ function showAll() {
   displayList();
 }
 
+/*Tracks and returns how many tasks are left*/
 function tasksLeft() {
   let toDoItems = JSON.parse(localStorage.getItem("toDo"));
 
@@ -169,6 +177,7 @@ function tasksLeft() {
   return activeTasks;
 }
 
+/*Scratches or unscratches out completed tasks; updates the status bar*/
 function updateTask() {
   let toDoItems = JSON.parse(localStorage.getItem("toDo"));
   let tasks = document.getElementById("taskList");
@@ -198,6 +207,7 @@ function updateTask() {
   }
 }
 
+/*Deletes task from localstorage*/
 function deleteTask(deleteBtn) {
   let tasks = document.getElementById("taskList");
   let taskID = deleteBtn.parentNode.parentNode.rowIndex;
