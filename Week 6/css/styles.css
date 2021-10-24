@@ -7,13 +7,12 @@ body {
 table {
   width: 500px;
   margin: auto;
+  border-collapse: collapse;
 }
 table,
 th,
 td {
   border: solid 2px black;
-  border-collapse: collapse;
-
   text-align: center;
 }
 
@@ -45,14 +44,14 @@ tr:last-child td button {
   margin-left: 1em;
 }
 
+tr:last-child {
+  text-align: center;
+}
+
 table button {
   background-color: transparent;
   border: none;
   font-size: x-large;
-}
-
-table button:hover {
-  border: 1px solid black;
 }
 
 input[type="checkbox"] {
@@ -62,7 +61,6 @@ input[type="checkbox"] {
 
 /*id styles*/
 #todo_list {
-  /*border: 2px solid black;*/
   text-align: center;
 }
 
@@ -78,11 +76,17 @@ input[type="checkbox"] {
 }
 
 #submitTaskBtn {
-  width: 4em;
-  height: 2.5em;
+  width: 2em;
+  height: 2em;
+  font-size: x-large;
 }
 
+/*class styles*/
 .completedTask {
   text-decoration: line-through;
   font-weight: bolder;
+}
+
+.btnSelect {
+  border: 1px solid black;
 }
