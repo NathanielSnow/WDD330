@@ -1,5 +1,3 @@
-localStorage.clear();
-
 function addTask() {
   let taskInput = document.getElementById("taskInput").value;
   let toDoList = [];
