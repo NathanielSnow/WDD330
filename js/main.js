@@ -23,6 +23,10 @@ const links = [
     label: "Week-06 TODO Assignment",
     url: "Week 6/index.html",
   },
+  {
+    label: "Week-07 TODO Assignment",
+    url: "Week 7/index.html",
+  },
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
