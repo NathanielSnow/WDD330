@@ -6,5 +6,5 @@ const hikes = new Hikes("hikes");
 
 window.addEventListener("load", () => {
   hikes.showHikeList();
-  comments.showCommentsList("all");
+  //comments.showCommentsList('all');
 });
