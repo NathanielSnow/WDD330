@@ -1,12 +1,20 @@
-const quiz = [
-  { name: "Superman", realName: "Clark Kent" },
-  { name: "Wonderwoman", realName: "Dianna Prince" },
-  { name: "Batman", realName: "Bruce Wayne" },
-  { name: "The Hulk", realName: "Bruce Banner" },
-  { name: "Spider-man", realName: "Peter Parker" },
-  { name: "Cyclops", realName: "Scott Summers" },
-];
+const url =
+  "https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/questions.json";
 
+fetch(url)
+  .then((res) => res.json())
+  .then((quiz) => {
+    view.start.addEventListener(
+      "click",
+      () => game.start(quiz.questions),
+      false
+    );
+    view.response.addEventListener(
+      "click",
+      (event) => game.check(event),
+      false
+    );
+  });
 // Utility functions
 function random(a, b = 1) {
   // if only 1 argument is provided, we need to swap the values of a and b
@@ -123,6 +131,3 @@ const game = {
     clearInterval(this.timer);
   },
 };
-
-view.start.addEventListener("click", () => game.start(quiz), false);
-view.response.addEventListener("click", (event) => game.check(event), false);
