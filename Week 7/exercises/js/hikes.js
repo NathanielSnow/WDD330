@@ -10,7 +10,7 @@ const hikeList = [
     description:
       "Beautiful short hike along the Bechler river to Bechler Falls",
     directions:
-      "Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead."
+      "Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.",
   },
   {
     name: "Teton Canyon",
@@ -20,7 +20,7 @@ const hikeList = [
     difficulty: "Easy",
     description: "Beautiful short (or long) hike through Teton Canyon.",
     directions:
-      "Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles then turn right onto Stateline Road for a short distance, then left onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead."
+      "Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles then turn right onto Stateline Road for a short distance, then left onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead.",
   },
   {
     name: "Denanda Falls",
@@ -31,8 +31,8 @@ const hikeList = [
     description:
       "Beautiful hike through Bechler meadows river to Denanda Falls",
     directions:
-      "Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead."
-  }
+      "Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead.",
+  },
 ];
 
 export default class Hikes {
@@ -40,7 +40,7 @@ export default class Hikes {
     this.parentElement = document.getElementById(elementId);
     // we need a back button to return back to the list. This will build it and hide it. When we need it we just need to remove the 'hidden' class
     this.backButton = this.buildBackButton();
-    this.commentClass = new Comments('commentsDiv', 'hikes');
+    this.commentClass = new Comments("commentsDiv", "hikes");
   }
   // why is this function necessary?  hikeList is not exported, and so it cannot be seen outside of this module. I added this in case I ever need the list of hikes outside of the module. This also sets me up nicely if my data were to move. I can just change this method to the new source and everything will still work if I only access the data through this getter.
 
@@ -49,30 +49,30 @@ export default class Hikes {
   }
   // For the first stretch we will need to get just one hike.
   getHikeByName(hikeName) {
-    return this.getAllHikes().find(hike => hike.name === hikeName);
+    return this.getAllHikes().find((hike) => hike.name === hikeName);
   }
   //show a list of hikes in the parentElement
   showHikeList() {
-    this.parentElement.innerHTML = '';
-    renderHikeList(this.parentElement, this.getAllHikes())
+    this.parentElement.innerHTML = "";
+    renderHikeList(this.parentElement, this.getAllHikes());
     this.addHikeListener();
-    this.backButton.classList.add('hide');
-    this.commentClass.showCommentsList('all');
+    this.backButton.classList.add("hide");
+    this.commentClass.showCommentsList("all");
   }
   // show one hike with full details in the parentElement
   showOneHike(hikeName) {
     const hike = this.getHikeByName(hikeName);
-    this.parentElement.innerHTML = '';
+    this.parentElement.innerHTML = "";
     this.parentElement.appendChild(renderOneHikeFull(hike));
-    this.backButton.classList.remove('hide');
+    this.backButton.classList.remove("hide");
     this.commentClass.showCommentsList(hikeName);
   }
   // in order to show the details of a hike ontouchend we will need to attach a listener AFTER the list of hikes has been built. The function below does that.
   addHikeListener() {
     // We need to loop through the children of our list and attach a listener to each, remember though that children is a nodeList...not an array. So in order to use something like a forEach we need to convert it to an array.
     const childrenArray = Array.from(this.parentElement.children);
-    childrenArray.forEach(child => {
-      child.addEventListener('click', e => {
+    childrenArray.forEach((child) => {
+      child.addEventListener("click", (e) => {
         this.showOneHike(e.currentTarget.dataset.name);
       });
     });
@@ -82,13 +82,13 @@ export default class Hikes {
     //console.log("button state: ", this.backButton);
     const buildBackButton = document.createElement("button");
     const div = document.createElement("div");
-    buildBackButton.innerHTML = 'All Hikes';
-    buildBackButton.addEventListener('click', () => {
-      this.showHikeList()
+    buildBackButton.innerHTML = "All Hikes";
+    buildBackButton.addEventListener("click", () => {
+      this.showHikeList();
     });
-    buildBackButton.classList.add('hide');
-    buildBackButton.classList.add('back-button');
-    div.classList.add('button-div');
+    buildBackButton.classList.add("hide");
+    buildBackButton.classList.add("back-button");
+    div.classList.add("button-div");
     div.appendChild(buildBackButton);
     this.parentElement.after(div);
     return buildBackButton;
@@ -96,14 +96,14 @@ export default class Hikes {
 }
 // methods responsible for building HTML.  Why aren't these in the class?  They don't really need to be, and by moving them outside of the exported class, they cannot be called outside the module...they become private.
 function renderHikeList(parent, hikes) {
-  hikes.forEach(hike => {
+  hikes.forEach((hike) => {
     parent.appendChild(renderOneHikeLight(hike));
   });
 }
 function renderOneHikeLight(hike) {
   const item = document.createElement("li");
-  item.classList.add('specific-hike');
-  item.setAttribute('data-name', hike.name);
+  item.classList.add("specific-hike");
+  item.setAttribute("data-name", hike.name);
   item.innerHTML = ` <h2>${hike.name}</h2>
   <div class="image"><img src="${hike.imgSrc}" alt="${hike.imgAlt}"></div>
   <div>
