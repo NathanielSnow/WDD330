@@ -49,8 +49,26 @@ function displayPersonData(obj) {
   }
 
   return (
-    JSON.stringify(obj.name + " " + obj.gender) +
-    "<br>" +
+    JSON.stringify(
+      "Name: " +
+        obj.name +
+        "<br><br>" +
+        "Gender: " +
+        obj.gender +
+        "<br><br>" +
+        "Birth Year: " +
+        obj.birth_year +
+        "<br><br>" +
+        "Hair Color: " +
+        obj.hair_color +
+        "<br><br>" +
+        "Skin: " +
+        obj.skin_color +
+        "<br><br>" +
+        "Eye Color: " +
+        obj.eye_color
+    ) +
+    "<br><br>" +
     `<button onclick=fetchData("https://swapi.dev/api/people/?page=${pageNum}")>Back</button>`
   );
 }
