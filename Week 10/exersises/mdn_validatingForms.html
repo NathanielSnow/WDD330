@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MDN: Validating Forms</title>
+    <link rel="stylesheet" href="css/mdn_validate.css" />
+  </head>
+  <body>
+    <h1>Built-in validation</h1>
+    <!--<form>
+      <p>
+        <fieldset>
+          <legend>Do you have a driver's license?<abbr title="This field is mandatory" aria-label="required">*</abbr></legend>
+          <input type="radio" required name="driver" id="r1" value="yes"><label for="r1">Yes</label>
+          <input type="radio" required name="driver" id="r2" value="no"><label for="r2">No</label>
+        </fieldset>
+      </p>
+      <p>
+        <label for="n1">How old are you?</label>
+        <input type="number" min="12" max="120" step="1" id="n1" name="age"
+               pattern="\d+">
+      </p>
+      <p>
+        <label for="t1">What's your favorite fruit?<abbr title="This field is mandatory" aria-label="required">*</abbr></label>
+        <input type="text" id="t1" name="fruit" list="l1" required
+               pattern="[Bb]anana|[Cc]herry|[Aa]pple|[Ss]trawberry|[Ll]emon|[Oo]range">
+        <datalist id="l1">
+          <option>Banana</option>
+          <option>Cherry</option>
+          <option>Apple</option>
+          <option>Strawberry</option>
+          <option>Lemon</option>
+          <option>Orange</option>
+        </datalist>
+      </p>
+      <p>
+        <label for="t2">What's your e-mail address?</label>
+        <input type="email" id="t2" name="email">
+      </p>
+      <p>
+        <label for="t3">Leave a short message</label>
+        <textarea id="t3" name="msg" maxlength="140" rows="5"></textarea>
+      </p>
+      <p>
+        <button>Submit</button>
+      </p>
+    </form>
+    <br /><br /><br />
+    <h1>JavaScript validation</h1>
+    <form novalidate>
+      <p>
+        <label for="mail">
+          <span>Please enter an email address:</span>
+          <input type="email" id="mail" name="mail" required minlength="8" />
+          <span class="error" aria-live="polite"></span>
+        </label>
+      </p>
+      <button>Submit</button>
+    </form>-->
+    <form>
+      <p>
+        <label for="mail">
+          <span>Please enter an email address:</span>
+          <input type="text" id="mail" name="mail" />
+          <span class="error" aria-live="polite"></span>
+        </label>
+      </p>
+      <!-- Some legacy browsers need to have the `type` attribute
+           explicitly set to `submit` on the `button`element -->
+      <button type="submit">Submit</button>
+    </form>
+
+    <script src="js/mdn_validate.js"></script>
+  </body>
+</html>
