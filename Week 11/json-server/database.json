@@ -102,6 +102,13 @@
       "userId": "user1@email.com",
       "createdAt": 1638065169729,
       "id": 19
+    },
+    {
+      "title": "It's happy hour!",
+      "content": "With Orange juice!",
+      "userId": "user1@email.com",
+      "createdAt": 1638065940824,
+      "id": 20
     }
   ]
 }
