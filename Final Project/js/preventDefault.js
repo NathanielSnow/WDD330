@@ -21,4 +21,16 @@ let stopCreateBtn = document
     event.preventDefault();
   });
 
-export { stopAddBtn, stopCreateBtn, stopDisplayBtn, stopSearchBtn };
+let stopClearDatabase = document
+  .getElementById("clearDatabase")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+  });
+
+export {
+  stopAddBtn,
+  stopCreateBtn,
+  stopDisplayBtn,
+  stopSearchBtn,
+  stopClearDatabase,
+};
