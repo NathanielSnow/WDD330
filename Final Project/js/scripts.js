@@ -19,7 +19,6 @@ document
 //let shoppingListItems = [];
 let listOfItems = [];
 let listOfLists = [];
-
 /**************************** Step 1: Add as many items as you want to a list  ************************** */
 
 function addItem() {
@@ -46,18 +45,19 @@ function addItem() {
 
 function createList() {
   //push the list of items into an array of lists
+  listOfLists = [];
   listOfLists.push(listOfItems);
 
   //if localstorage does not have a space created for a the list of lists, then make room. Else, grab the space and update it
   if (localStorage.getItem("shoppingLists") === null) {
-    localStorage.setItem("shoppingLists", JSON.stringify(listOfLists));
+    localStorage.setItem("shoppingLists", JSON.stringify(listOfLists[0]));
   } else {
     let shoppingLists = JSON.parse(localStorage.getItem("shoppingLists"));
-    shoppingLists.push(listOfLists);
+    shoppingLists.push(listOfLists[0]);
     localStorage.setItem("shoppingLists", JSON.stringify(shoppingLists));
   }
 
-  //displayList();
+  listOfItems = [];
 }
 
 /**************************** createList function end ************************** */
@@ -65,37 +65,44 @@ function createList() {
 /**************************** Step 3: Display a table of lists  ************************** */
 
 function displayList() {
-  /*let product = document.getElementById("product").value;
-  let quantity = document.getElementById("quantity").value;
-  let cost = document.getElementById("cost").value;
-  let timeOfCreation = document.getElementById("timeOfCreation").value;
-  alert(product + "\n" + quantity + "\n" + cost + "\n" + timeOfCreation);*/
-
   let shoppingLists = JSON.parse(localStorage.getItem("shoppingLists"));
 
-  //"shoppingLists.length" is the number of lists (each of which contain one or more items), that are stored in localstorage
+  console.log(shoppingLists);
 
-  alert(shoppingLists.length);
+  //let lists = document.getElementById("shoppingListsTable");
 
-  /*for (let x = 0; x < shoppingLists.length - 1; x++) {
-    let lists = document.getElementById("shoppingListsTable");
-    let rowCount = lists.rows.length;
-    let row = lists.insertRow(rowCount);
+  //Personal Note: "shoppingLists.length" is the number of lists (each of which contain one or more items), that are stored in localstorage
 
-    let cell1 = row.insertCell(0);
-    let cell2 = row.insertCell(1);
-    let cell3 = row.insertCell(2);
-    let cell4 = row.insertCell(3);
+  //iterate through each list in localstorage
+  /*
+  for (let l = 0; l < shoppingLists.length; l++) {
+    //iterate through each item on a list
+    alert("Number of Lists: " + shoppingLists.length);
+    
+    for (let i = 0; i < shoppingLists[l].length - 1; i++) {
+      let rowCount = lists.rows.length;
+      let row = lists.insertRow(rowCount);
+      let cell1 = row.insertCell(0);
+      let cell2 = row.insertCell(1);
+      let cell3 = row.insertCell(2);
+      let cell4 = row.insertCell(3);
 
-    cell1.innerHTML = shoppingListItems[x].product;
-    cell2.innerHTML = shoppingListItems[x].quantity;
-    cell3.innerHTML = "$" + shoppingListItems[x].cost;
-    cell4.innerHTML = shoppingListItems[x].timeOfCreation;
-  }*/
+      cell1.innerHTML = shoppingLists[l][i].product;
+      cell2.innerHTML = shoppingLists[l][i].quantity;
+      cell3.innerHTML = "$" + shoppingLists[l][i].cost;
+      cell4.innerHTML = shoppingLists[l][i].timeOfCreation;
+    }
+  }
+  */
 }
 
 /**************************** displayList function end ************************** */
 
 function clearStorage() {
+  document.getElementById("product").value = "";
+  document.getElementById("quantity").value = "";
+  document.getElementById("cost").value = "";
+  document.getElementById("timeOfCreation").value = "";
   localStorage.clear();
+  listOfLists = [];
 }
