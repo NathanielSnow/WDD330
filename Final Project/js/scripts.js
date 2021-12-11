@@ -47,10 +47,12 @@ function createList() {
   //push the list of items into an array of lists
   listOfLists = [];
   listOfLists.push(listOfItems);
+  let backUpArray = [];
 
   //if localstorage does not have a space created for a the list of lists, then make room. Else, grab the space and update it
   if (localStorage.getItem("shoppingLists") === null) {
-    localStorage.setItem("shoppingLists", JSON.stringify(listOfLists[0]));
+    backUpArray.push(listOfLists[0]);
+    localStorage.setItem("shoppingLists", JSON.stringify(backUpArray));
   } else {
     let shoppingLists = JSON.parse(localStorage.getItem("shoppingLists"));
     shoppingLists.push(listOfLists[0]);
@@ -67,21 +69,22 @@ function createList() {
 function displayList() {
   let shoppingLists = JSON.parse(localStorage.getItem("shoppingLists"));
 
-  console.log(shoppingLists);
-
-  //let lists = document.getElementById("shoppingListsTable");
-
+  let lists = document.getElementById("shoppingListsTable");
+  lists.innerHTML = "";
   //Personal Note: "shoppingLists.length" is the number of lists (each of which contain one or more items), that are stored in localstorage
+  //alert("Number of Lists: " + shoppingLists.length);
 
   //iterate through each list in localstorage
-  /*
   for (let l = 0; l < shoppingLists.length; l++) {
     //iterate through each item on a list
-    alert("Number of Lists: " + shoppingLists.length);
-    
-    for (let i = 0; i < shoppingLists[l].length - 1; i++) {
-      let rowCount = lists.rows.length;
-      let row = lists.insertRow(rowCount);
+    let rowCount = lists.rows.length;
+    let headerRow = lists.insertRow(rowCount);
+    let headerCell = headerRow.insertCell(0);
+    headerCell.colSpan = "4";
+    headerCell.innerHTML = `List ${l + 1}`;
+
+    for (let i = 0; i < shoppingLists[l].length; i++) {
+      let row = lists.insertRow(rowCount + 1);
       let cell1 = row.insertCell(0);
       let cell2 = row.insertCell(1);
       let cell3 = row.insertCell(2);
@@ -93,7 +96,6 @@ function displayList() {
       cell4.innerHTML = shoppingLists[l][i].timeOfCreation;
     }
   }
-  */
 }
 
 /**************************** displayList function end ************************** */
