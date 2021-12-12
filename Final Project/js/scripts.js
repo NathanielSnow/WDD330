@@ -37,6 +37,8 @@ function addItem() {
   };
 
   listOfItems.push(item);
+  document.getElementById("savedItems").value +=
+    item.product + "\n" + item.quantity + "\n" + item.cost + "\n\n";
 }
 
 /**************************** addItem function end ************************** */
@@ -44,25 +46,42 @@ function addItem() {
 /**************************** Step 2: Create a list of all the items you put in a list  ************************** */
 
 function createList() {
-  //push the list of items into an array of lists
-  listOfLists = [];
-  listOfLists.push(listOfItems);
-  let backUpArray = [];
+  let confirmation = confirm("Are you sure you want to create a list?");
+  if (confirmation) {
+    //push the list of items into an array of lists
+    listOfLists = [];
+    listOfLists.push(listOfItems);
+    let backUpArray = [];
 
-  //if localstorage does not have a space created for a the list of lists, then make room. Else, grab the space and update it
-  if (localStorage.getItem("shoppingLists") === null) {
-    backUpArray.push(listOfLists[0]);
-    localStorage.setItem("shoppingLists", JSON.stringify(backUpArray));
-  } else {
-    let shoppingLists = JSON.parse(localStorage.getItem("shoppingLists"));
-    shoppingLists.push(listOfLists[0]);
-    localStorage.setItem("shoppingLists", JSON.stringify(shoppingLists));
+    //if localstorage does not have a space created for a the list of lists, then make room. Else, grab the space and update it
+    if (localStorage.getItem("shoppingLists") === null) {
+      backUpArray.push(listOfLists[0]);
+      localStorage.setItem("shoppingLists", JSON.stringify(backUpArray));
+    } else {
+      let shoppingLists = JSON.parse(localStorage.getItem("shoppingLists"));
+      shoppingLists.push(listOfLists[0]);
+      localStorage.setItem("shoppingLists", JSON.stringify(shoppingLists));
+    }
+    document.getElementById("savedItems").value = "";
+    listOfItems = [];
   }
-
-  listOfItems = [];
 }
 
 /**************************** createList function end ************************** */
+
+/*Deletes task from localstorage*/
+function deleteItem() {
+  return alert();
+  /*let listOfLists = document.getElementById("shoppingListsTable");
+  let taskID = deleteBtn.parentNode.rowIndex;*/
+
+  /*let toDoItems = JSON.parse(localStorage.getItem("toDo"));
+  toDoItems.splice(taskID, 1);
+  localStorage.setItem("toDo", JSON.stringify(toDoItems));
+
+  listOfLists.innerHTML = "";
+  displayList();*/
+}
 
 /**************************** Step 3: Display a table of lists  ************************** */
 
@@ -81,7 +100,7 @@ function displayList() {
     let headerRow = lists.insertRow(rowCount);
     let headerCell = headerRow.insertCell(0);
     headerCell.colSpan = "4";
-    headerCell.innerHTML = `List ${l + 1}`;
+    headerCell.innerHTML = `List ${l + 1} `;
 
     for (let i = 0; i < shoppingLists[l].length; i++) {
       let row = lists.insertRow(rowCount + 1);
@@ -105,6 +124,9 @@ function clearStorage() {
   document.getElementById("quantity").value = "";
   document.getElementById("cost").value = "";
   document.getElementById("timeOfCreation").value = "";
+  document.getElementById("savedItems").value = "";
+  let lists = document.getElementById("shoppingListsTable");
+  lists.innerHTML = "";
   localStorage.clear();
   listOfLists = [];
 }
