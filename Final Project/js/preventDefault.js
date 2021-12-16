@@ -10,11 +10,6 @@ let stopDisplayBtn = document
     event.preventDefault();
   });
 
-let stopSearchBtn = document
-  .getElementById("searchDatabase")
-  .addEventListener("click", function (event) {
-    event.preventDefault();
-  });
 let stopCreateBtn = document
   .getElementById("createListBtn")
   .addEventListener("click", function (event) {
@@ -27,10 +22,4 @@ let stopClearDatabase = document
     event.preventDefault();
   });
 
-export {
-  stopAddBtn,
-  stopCreateBtn,
-  stopDisplayBtn,
-  stopSearchBtn,
-  stopClearDatabase,
-};
+export { stopAddBtn, stopCreateBtn, stopDisplayBtn, stopClearDatabase };
