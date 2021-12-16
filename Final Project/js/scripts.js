@@ -2,23 +2,44 @@ import {
   stopAddBtn,
   stopCreateBtn,
   stopDisplayBtn,
-  stopSearchBtn,
+  stopClearDatabase,
 } from "./preventDefault.js";
 
-document
-  .getElementById("displayListBtn")
-  .addEventListener("click", displayList);
+import { getUserLocation } from "./location.js";
 
-document.getElementById("addItemBtn").addEventListener("click", addItem);
-document.getElementById("createListBtn").addEventListener("click", createList);
+const date = new Date();
 
-document
-  .getElementById("clearDatabase")
-  .addEventListener("click", clearStorage);
+const today = date.toLocaleString("en-US", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  hour: "numeric",
+  minute: "2-digit",
+});
+
+//document.getElementById("deleteBtn").addEventListener("click", deleteItem);
 
 //let shoppingListItems = [];
 let listOfItems = [];
 let listOfLists = [];
+
+/**************************** User Instructions ************************** */
+function userInstructions() {
+  alert(
+    "Hello! Welcome to List Creator!!\n\n To create a list, start by inputing information" +
+      "about an item on your list, such as it's name, how much it costs, and how much if it you plan to buy.\n" +
+      "Then press 'Add Item' to place that item in your list. Repeat for however many items you want on your list.\n" +
+      "When you are done adding items, press the 'Create List' item to add the list to localstorage.\n You can then press the 'Display Lists button to see all the lists you have made!\n Have fun making lists!"
+  );
+}
+
+document.getElementById("info").addEventListener("click", userInstructions);
+
+document.addEventListener("DOMContentLoaded", function () {
+  userInstructions();
+});
+/**************************** User Instructions end ************************** */
+
 /**************************** Step 1: Add as many items as you want to a list  ************************** */
 
 function addItem() {
@@ -40,6 +61,8 @@ function addItem() {
   document.getElementById("savedItems").value +=
     item.product + "\n" + item.quantity + "\n" + item.cost + "\n\n";
 }
+
+document.getElementById("addItemBtn").addEventListener("click", addItem);
 
 /**************************** addItem function end ************************** */
 
@@ -67,15 +90,20 @@ function createList() {
   }
 }
 
+document.getElementById("createListBtn").addEventListener("click", createList);
+
 /**************************** createList function end ************************** */
 
 /*Deletes task from localstorage*/
-function deleteItem() {
-  return alert();
-  /*let listOfLists = document.getElementById("shoppingListsTable");
-  let taskID = deleteBtn.parentNode.rowIndex;*/
+function deleteItem(evt) {
+  let listOfLists = document.getElementById("shoppingListsTable");
+  let taskID = evt.currentTarget.parentNode.rowIndex;
+  alert(taskID);
 
-  /*let toDoItems = JSON.parse(localStorage.getItem("toDo"));
+  /*let listOfLists = document.getElementById("shoppingListsTable");
+  let taskID = deleteBtn.parentNode.rowIndex;
+
+  let toDoItems = JSON.parse(localStorage.getItem("toDo"));
   toDoItems.splice(taskID, 1);
   localStorage.setItem("toDo", JSON.stringify(toDoItems));
 
@@ -87,38 +115,74 @@ function deleteItem() {
 
 function displayList() {
   let shoppingLists = JSON.parse(localStorage.getItem("shoppingLists"));
-
   let lists = document.getElementById("shoppingListsTable");
-  lists.innerHTML = "";
-  //Personal Note: "shoppingLists.length" is the number of lists (each of which contain one or more items), that are stored in localstorage
-  //alert("Number of Lists: " + shoppingLists.length);
+  let costOfItems = 0;
 
-  //iterate through each list in localstorage
-  for (let l = 0; l < shoppingLists.length; l++) {
-    //iterate through each item on a list
-    let rowCount = lists.rows.length;
-    let headerRow = lists.insertRow(rowCount);
-    let headerCell = headerRow.insertCell(0);
-    headerCell.colSpan = "4";
-    headerCell.innerHTML = `List ${l + 1} `;
+  if (shoppingLists === null) {
+    lists.innerHTML = "There are no lists in localstorage at this time.";
+  } else {
+    lists.innerHTML = "";
 
-    for (let i = 0; i < shoppingLists[l].length; i++) {
-      let row = lists.insertRow(rowCount + 1);
-      let cell1 = row.insertCell(0);
-      let cell2 = row.insertCell(1);
-      let cell3 = row.insertCell(2);
-      let cell4 = row.insertCell(3);
+    //iterate through each list in localstorage
+    for (let l = 0; l < shoppingLists.length; l++) {
+      //iterate through each item on a list
+      let rowCount = lists.rows.length;
+      let titleRow = lists.insertRow(rowCount);
+      let titlerCell = titleRow.insertCell(0);
+      titlerCell.colSpan = "5";
+      titlerCell.innerHTML = `Created on ${today} `;
 
-      cell1.innerHTML = shoppingLists[l][i].product;
-      cell2.innerHTML = shoppingLists[l][i].quantity;
-      cell3.innerHTML = "$" + shoppingLists[l][i].cost;
-      cell4.innerHTML = shoppingLists[l][i].timeOfCreation;
+      let headerRow = lists.insertRow(rowCount + 1);
+      let headerCell1 = headerRow.insertCell(0);
+      let headerCell2 = headerRow.insertCell(1);
+      let headerCell3 = headerRow.insertCell(2);
+      let headerCell4 = headerRow.insertCell(3);
+      headerCell1.innerHTML = "Product";
+      headerCell2.innerHTML = "Quantity";
+      headerCell3.innerHTML = "Price";
+      headerCell4.innerHTML = "Total";
+
+      for (let i = 0; i < shoppingLists[l].length; i++) {
+        let row = lists.insertRow(rowCount + 2);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
+        let cell5 = row.insertCell(4);
+
+        cell1.innerHTML = shoppingLists[l][i].product;
+        cell2.innerHTML = shoppingLists[l][i].quantity;
+        cell3.innerHTML = "$" + shoppingLists[l][i].cost;
+        cell4.innerHTML =
+          "$" + shoppingLists[l][i].quantity * shoppingLists[l][i].cost;
+        cell5.innerHTML = '<button class="deleteBtn">&#x2715</button>';
+        cell5.addEventListener("click", deleteItem);
+        costOfItems += shoppingLists[l][i].quantity * shoppingLists[l][i].cost;
+      }
+
+      let rowReCount = lists.rows.length;
+      let totalCostRow = lists.insertRow(rowReCount);
+      let totalCostCell = totalCostRow.insertCell(0);
+      totalCostCell.colSpan = "5";
+      totalCostCell.innerHTML = `Total Cost of Items: $${costOfItems.toFixed(
+        2
+      )}`;
+
+      let extraSpaceRow = lists.insertRow(rowReCount + 1);
+      let extraSpacetCell = extraSpaceRow.insertCell(0);
+      extraSpacetCell.colSpan = "5";
+      extraSpacetCell.innerHTML = "<p></p>";
     }
   }
 }
 
+document
+  .getElementById("displayListBtn")
+  .addEventListener("click", displayList);
+
 /**************************** displayList function end ************************** */
 
+/**************************** Clear localstorage of all lists  ************************** */
 function clearStorage() {
   document.getElementById("product").value = "";
   document.getElementById("quantity").value = "";
@@ -131,19 +195,10 @@ function clearStorage() {
   listOfLists = [];
 }
 
-const lookUpLocation = (position) => {
-  const { latitude, longitude } = position.coords;
-  fetch(
-    `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=1234`
-  )
-    .then((response) => response.json())
-    .then(confirm.log);
-};
-
-function displayLocation() {
-  window.navigator.geolocation.getCurrentPosition(lookUpLocation, console.log);
-}
-
 document
-  .getElementById("searchDatabase")
-  .addEventListener("click", displayLocation);
+  .getElementById("clearDatabase")
+  .addEventListener("click", clearStorage);
+
+/**************************** Clear localstorage of all lists end ************************** */
+
+getUserLocation();
