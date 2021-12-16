@@ -6,31 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopping List</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
-    <h1>Shopping List</h1>
-    <h2>Items</h2>
-    <div id="formDiv">
-      <form>
-        <label>Product Name:</label>
-        <input type="text" id="product" /><br />
-        <label>Quantity:</label>
-        <input type="number" id="quantity" /><br />
-        <label>Cost per item:</label>
-        <input type="text" id="cost" /><br />
-        <label>Date:</label>
-        <input type="date" id="timeOfCreation" /><br />
-        <textarea id="savedItems" name="itemList" rows="10" cols="25" readonly>
-        </textarea
-        ><br /><br />
-        <button id="addItemBtn">Add Item(s)</button>
-        <button id="createListBtn">Create List</button>
-        <button id="displayListBtn">Display Lists</button><br /><br />
-        <button id="searchDatabase">Search Database</button>
-        <button id="clearDatabase">Clear Database</button>
-      </form>
+    <div id="gui">
+      <h1>
+        Shopping List Creator
+        <i id="info" class="fa">&#xf05a;</i>
+      </h1>
+      <h2>Item Details</h2>
+      <div id="formDiv">
+        <form>
+          <label>Product Name:</label>
+          <input type="text" id="product" /><br />
+          <label>Quantity:</label>
+          <input type="number" id="quantity" /><br />
+          <label>Cost per item:</label>
+          <input type="text" id="cost" /><br />
+          <label>Date:</label>
+          <input type="date" id="timeOfCreation" /><br />
+          <textarea
+            id="savedItems"
+            name="itemList"
+            rows="10"
+            cols="25"
+            readonly
+          >
+          </textarea
+          ><br /><br />
+          <button id="addItemBtn">Add Item(s)</button>
+          <button id="createListBtn">Create List</button>
+          <button id="displayListBtn">Display Lists</button><br /><br />
+          <button id="clearDatabase">Clear Database</button>
+        </form>
+      </div>
+      <div class="box"><span id="userLocation" class="content"></span></div>
+      <br />
+      <table id="shoppingListsTable"></table>
     </div>
-    <table id="shoppingListsTable"></table>
     <script src="js/scripts.js" type="module"></script>
   </body>
 </html>
