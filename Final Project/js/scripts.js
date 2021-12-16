@@ -17,8 +17,6 @@ const today = date.toLocaleString("en-US", {
   minute: "2-digit",
 });
 
-//document.getElementById("deleteBtn").addEventListener("click", deleteItem);
-
 //let shoppingListItems = [];
 let listOfItems = [];
 let listOfLists = [];
@@ -91,6 +89,7 @@ function createList() {
 }
 
 document.getElementById("createListBtn").addEventListener("click", createList);
+clearInputs();
 
 /**************************** createList function end ************************** */
 
@@ -109,6 +108,7 @@ function deleteItem(evt) {
 
   listOfLists.innerHTML = "";
   displayList();*/
+  //document.getElementById("deleteBtn").addEventListener("click", deleteItem);
 }
 
 /**************************** Step 3: Display a table of lists  ************************** */
@@ -116,12 +116,12 @@ function deleteItem(evt) {
 function displayList() {
   let shoppingLists = JSON.parse(localStorage.getItem("shoppingLists"));
   let lists = document.getElementById("shoppingListsTable");
-  let costOfItems = 0;
 
   if (shoppingLists === null) {
     lists.innerHTML = "There are no lists in localstorage at this time.";
   } else {
     lists.innerHTML = "";
+    let costOfItems = 0;
 
     //iterate through each list in localstorage
     for (let l = 0; l < shoppingLists.length; l++) {
@@ -148,30 +148,28 @@ function displayList() {
         let cell2 = row.insertCell(1);
         let cell3 = row.insertCell(2);
         let cell4 = row.insertCell(3);
-        let cell5 = row.insertCell(4);
 
         cell1.innerHTML = shoppingLists[l][i].product;
         cell2.innerHTML = shoppingLists[l][i].quantity;
         cell3.innerHTML = "$" + shoppingLists[l][i].cost;
         cell4.innerHTML =
           "$" + shoppingLists[l][i].quantity * shoppingLists[l][i].cost;
-        cell5.innerHTML = '<button class="deleteBtn">&#x2715</button>';
-        cell5.addEventListener("click", deleteItem);
         costOfItems += shoppingLists[l][i].quantity * shoppingLists[l][i].cost;
       }
 
       let rowReCount = lists.rows.length;
       let totalCostRow = lists.insertRow(rowReCount);
       let totalCostCell = totalCostRow.insertCell(0);
-      totalCostCell.colSpan = "5";
+      totalCostCell.colSpan = "4";
       totalCostCell.innerHTML = `Total Cost of Items: $${costOfItems.toFixed(
         2
       )}`;
 
       let extraSpaceRow = lists.insertRow(rowReCount + 1);
       let extraSpacetCell = extraSpaceRow.insertCell(0);
-      extraSpacetCell.colSpan = "5";
+      extraSpacetCell.colSpan = "4";
       extraSpacetCell.innerHTML = "<p></p>";
+      costOfItems = 0;
     }
   }
 }
@@ -179,11 +177,13 @@ function displayList() {
 document
   .getElementById("displayListBtn")
   .addEventListener("click", displayList);
+clearInputs();
 
 /**************************** displayList function end ************************** */
 
 /**************************** Clear localstorage of all lists  ************************** */
-function clearStorage() {
+
+function clearInputs() {
   document.getElementById("product").value = "";
   document.getElementById("quantity").value = "";
   document.getElementById("cost").value = "";
@@ -191,8 +191,17 @@ function clearStorage() {
   document.getElementById("savedItems").value = "";
   let lists = document.getElementById("shoppingListsTable");
   lists.innerHTML = "";
-  localStorage.clear();
-  listOfLists = [];
+}
+
+function clearStorage() {
+  if (confirm("Are you sure you want to erase ALL your lists?")) {
+    clearInputs();
+    localStorage.clear();
+    listOfLists = [];
+    alert("Your lists were erased!");
+  } else {
+    alert("Your lists were not erased!");
+  }
 }
 
 document
