@@ -47,6 +47,14 @@ const links = [
     label: "Week-12 Notes",
     url: "Week 12/index.html",
   },
+  {
+    label: "Week-13 Notes",
+    url: "Week 13/index.html",
+  },
+  {
+    label: "Week-14 Notes",
+    url: "Week 14/index.html",
+  },
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
